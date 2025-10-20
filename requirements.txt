@@ -1,0 +1,12 @@
+torch
+numpy
+h5py
+trimesh
+scipy
+matplotlib
+PyYAML
+pytorch3d
+torch-scatter
+tqdm
+pymeshlab
+networkx

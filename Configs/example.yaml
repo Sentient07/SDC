@@ -1,0 +1,61 @@
+
+
+### Dataset config ###
+train_dir: /path/to/your/training_data/      # Directory for training data
+val_dir: /path/to/your/validation_data/    # Directory for validation data
+mesh_dir: /path/to/your/mesh_data/         # Directory for mesh files
+gt_dir: /path/to/your/ground_truth_data/   # Directory for ground truth data
+results_dir: ./Results/Final               # Directory to save training results
+test_dir: ./                               # Directory for test data
+gt_ext: obj                                # Ground truth file extension
+add_noise: False                           # Whether to add noise to the input data
+tr_split_file: null                        # Optional: Path to a file listing training samples
+te_split_file: null                        # Optional: Path to a file listing test samples
+sc_us: False                               # Whether to scale to unit sphere
+
+# Training
+start_epoch: 0                             # Epoch to start training from
+n_epoch: 200                               # Total number of epochs to train
+epoch_thresh: 1                            # Threshold epoch for certain operations
+val_every: 20                              # Frequency of validation (in epochs)
+lr: 1e-4                                   # Learning rate
+lr_decay: True                             # Whether to use learning rate decay
+
+# Network Specific
+use_sig: True                              # Whether to use a sigmoid activation in the decoder
+enc_dim: 256                               # Encoder dimension
+dec_dim: 256                               # Decoder dimension
+enc_name: PurelyLocalPointNet              # Name of the encoder class to use
+dec_name: CNN_3d_rec7Def                   # Name of the decoder class to use
+dec_weight: null                           # Path to pretrained decoder weights (if any)
+
+# Voxel Specific
+vox_size: 64                               # Voxel grid size
+v_start: -1.0                              # Start of the voxel grid range
+v_end: 1.0                                 # End of the voxel grid range
+n_input_pc: 4096                           # Number of input point cloud points
+n_surf_pt: 50000                           # Number of surface points to sample
+n_neigh: 8                                 # Number of neighbors for KNN
+pooling_radius: 2                          # Pooling radius for voxelization
+pool_type: mean                            # Pooling type (e.g., 'mean')
+
+# Loss coefficients
+cd_coeff: 1.0                              # Chamfer distance loss coefficient
+cd_norm_coeff: 0.0                         # Chamfer distance normals loss coefficient
+lap_coeff: 0.0                             # Laplacian smoothing loss coefficient
+p2f_coeff: 0.0                             # Point-to-face distance loss coefficient
+p2f_offsur_coeff: 0.0                      # Off-surface point-to-face distance loss coefficient
+angle_coeff: 0.0                           # Angle loss coefficient
+ecd_coeff: 0.0                             # Edge Chamfer distance loss coefficient
+mp_coeff: 0.0                              # Mid-point consistency loss coefficient
+
+### Data loader config ###
+batch_size: 1                              # Batch size for training
+num_workers: 16                            # Number of workers for the data loader
+grid_pad: 3                                # Padding for the grid
+
+# Debug stuff
+use_gt: False                              # Whether to use ground truth for debugging
+sig_scale: 10.                             # Scale factor for the sigmoid function
+optim_step: [80, 120, 180]                 # Epochs at which to decay the learning rate
+sdf_clamp: 3.5                             # SDF clamping value
